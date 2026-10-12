@@ -1,0 +1,11 @@
+{
+  "network": "devnet",
+  "rpcUrl": "https://api.devnet.solana.com",
+  "programId": "SQst111111111111111111111111111111111111111",
+  "rewardMint": "Qst1111111111111111111111111111111111111111",
+  "tokenInfo": {
+    "name": "SolQuest Reward Token",
+    "symbol": "QUEST",
+    "decimals": 6
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "version": "0.1.0",
+  "name": "solquest",
+  "instructions": [
+    {
+      "name": "initializeConfig",
+      "accounts": [
+        { "name": "config", "isMut": true, "isSigner": false },
+        { "name": "rewardMint", "isMut": false, "isSigner": false },
+        { "name": "mintAuthority", "isMut": false, "isSigner": false },
+        { "name": "admin", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "rewardPerIncrement", "type": "u64" }
+      ]
+    },
+    {
+      "name": "initProfile",
+      "accounts": [
+        { "name": "profile", "isMut": true, "isSigner": false },
+        { "name": "config", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "username", "type": "string" },
+        { "name": "bio", "type": "string" }
+      ]
+    },
+    {
+      "name": "incrementCounter",
+      "accounts": [
+        { "name": "profile", "isMut": true, "isSigner": false },
+        { "name": "config", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": false, "isSigner": true }
+      ],
+      "args": []
+    },
+    {
+      "name": "claimReward",
+      "accounts": [
+        { "name": "profile", "isMut": true, "isSigner": false },
+        { "name": "config", "isMut": false, "isSigner": false },
+        { "name": "rewardMint", "isMut": true, "isSigner": false },
+        { "name": "mintAuthority", "isMut": false, "isSigner": false },
+        { "name": "userTokenAccount", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": true, "isSigner": true },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "amount", "type": "u64" }
+      ]
+    },
+    {
+      "name": "transferReward",
+      "accounts": [
+        { "name": "from", "isMut": true, "isSigner": false },
+        { "name": "to", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": false, "isSigner": true },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "amount", "type": "u64" }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "UserProfile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "authority", "type": "publicKey" },
+          { "name": "username", "type": "string" },
+          { "name": "bio", "type": "string" },
+          { "name": "counter", "type": "u64" },
+          { "name": "xp", "type": "u64" },
+          { "name": "level", "type": "u16" },
+          { "name": "tokensClaimed", "type": "u64" },
+          { "name": "createdAt", "type": "i64" },
+          { "name": "lastActiveAt", "type": "i64" },
+          { "name": "bump", "type": "u8" }
+        ]
+      }
+    },
+    {
+      "name": "ProgramConfig",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "admin", "type": "publicKey" },
+          { "name": "rewardMint", "type": "publicKey" },
+          { "name": "mintBump", "type": "u8" },
+          { "name": "bump", "type": "u8" },
+          { "name": "rewardPerIncrement", "type": "u64" },
+          { "name": "totalProfiles", "type": "u64" },
+          { "name": "totalIncrements", "type": "u64" }
+        ]
+      }
+    }
+  ]
+}
